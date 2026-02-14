@@ -1,29 +1,27 @@
 {
-  "name": "telegram-voucher-bot",
-  "version": "1.0.0",
-  "description": "Auto-redeem TrueMoney vouchers from Telegram messages and QR codes",
-  "main": "bot.js",
+  "name": "truemoney-auto-claim",
+  "version": "6.0.0",
+  "description": "Auto claim TrueMoney with tw-voucher (No Proxy)",
+  "main": "index.js",
+  "type": "commonjs",
   "scripts": {
-    "start": "node bot.js"
+    "start": "node index.js"
   },
-  "keywords": [
-    "telegram",
-    "voucher",
-    "truemoney",
-    "qr-scanner",
-    "auto-redeem"
-  ],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["telegram", "truemoney"],
+  "author": "AutoClaim",
+  "license": "MIT",
   "dependencies": {
-    "telegram": "^2.25.19",
+    "telegram": "^2.22.2",
+    "axios": "^1.6.2",
+    "express": "^4.18.2",
+    "jimp": "^0.22.10",
+    "jsqr": "^1.4.0",
     "input": "^1.0.1",
-    "axios": "^1.7.9",
-    "@opecgame/twapi": "^1.2.1",
-    "jimp": "^0.22.12",
-    "jsqr": "^1.4.0"
+    "dotenv": "^16.3.1",
+    "body-parser": "^1.20.2",
+    "@fortune-inc/tw-voucher": "^1.0.0"
   },
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=18.0.0"
   }
 }
