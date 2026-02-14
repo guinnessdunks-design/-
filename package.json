@@ -1,0 +1,29 @@
+{
+  "name": "telegram-voucher-bot",
+  "version": "1.0.0",
+  "description": "Auto-redeem TrueMoney vouchers from Telegram messages and QR codes",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "keywords": [
+    "telegram",
+    "voucher",
+    "truemoney",
+    "qr-scanner",
+    "auto-redeem"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "telegram": "^2.25.19",
+    "input": "^1.0.1",
+    "axios": "^1.7.9",
+    "@opecgame/twapi": "^1.2.1",
+    "jimp": "^0.22.12",
+    "jsqr": "^1.4.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
