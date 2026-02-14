@@ -549,6 +549,22 @@ async function processVoucher(voucher) {
       // แจ้ง Webhook ถ้ามีการตั้งค่าไว้
       if (CONFIG.webhookUrl) {
         try {
+          // คำนวณ delay/ความเร็ว
+          const now = Date.now();
+          const speed = result?.speed || 0; // ถ้ามี field speed ใน result
+          const delay = result?.delay || 0; // ถ้ามี field delay ใน result
+          const mode = result?.mode || 'Normal';
+          const voucherUrl = `https://gift.truemoney.com/campaign/?v=${voucher}`;
+          const timeStr = new Date().toLocaleString('th-TH', { hour: '2-digit', minute: '2-digit', second: '2-digit', day: 'numeric', month: 'short', year: 'numeric' });
+          const message = `✅ รับซอง TrueMoney สำเร็จ\n` +
+            `💰 จำนวนเงิน\n${amount} บาท\n` +
+            `⚡ ความเร็ว\n${speed || '-'}ms\n` +
+            `🎖️ โหมด\n🎯 ${mode}\n` +
+            `📱 เบอร์\n${CONFIG.walletName} (${CONFIG.walletNumber})\n` +
+            `📊 ยอดสะสม\n${totalAmount.toFixed(2)} บาท\n` +
+            `⏱️ Delay\n${delay || '-'}ms\n` +
+            `🔗 ลิงค์\n${voucherUrl}\n` +
+            `ระบบดักซอง TrueMoney•วันนี้ เวลา ${timeStr}`;
           await axios.post(CONFIG.webhookUrl, {
             event: 'voucher_claimed',
             voucher: voucher,
@@ -556,7 +572,8 @@ async function processVoucher(voucher) {
             wallet: CONFIG.walletNumber,
             walletName: CONFIG.walletName,
             totalClaimed,
-            totalAmount
+            totalAmount,
+            message
           });
         } catch (e) {
           console.log('Webhook แจ้งเตือนไม่สำเร็จ:', e.message);
